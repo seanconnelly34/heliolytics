@@ -17,8 +17,6 @@ const useGetMoviesBySearch = ({ searchTerm, page }: TSearchTerm) => {
     setMovieList([]);
   }, [searchTerm]);
 
-  console.log("searchTerm, searchTerm", searchTerm);
-  console.log("page", page, movieList);
   //fetch movie data, execute when searchTerm or page updates
   useEffect(() => {
     if (searchTerm === "") return;
