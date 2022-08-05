@@ -31,10 +31,12 @@ const useGetMoviesBySearch = ({ searchTerm, page }: TSearchTerm) => {
 
         const movies = response.data.results;
         const numberOfPagesAvailable = response.data.total_pages;
+        setLoading(false);
+
         if (movies.length === 0) return;
+
         setMovieList((prevState) => [...prevState, ...movies]);
         setTotalPages(numberOfPagesAvailable);
-        setLoading(false);
       } catch (error: unknown) {
         setError("Failure to fetch movie, Please Try Again or contact support");
       }

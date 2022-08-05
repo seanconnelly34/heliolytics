@@ -68,7 +68,9 @@ const Main = () => {
             next={fetchMoreMovies}
             hasMore={page !== totalPages}
             loader={
-              searchTerm !== "" ? (
+              movieList.length === 0 && searchTerm !== "" ? (
+                <h4>No Results Found</h4>
+              ) : searchTerm !== "" ? (
                 <h2 style={{ textAlign: "center" }}>
                   Scroll down to load more...
                 </h2>
@@ -111,7 +113,7 @@ const Main = () => {
           </InfiniteScroll>
         </>
       )}
-      {error && <Toast message={error} isOpen={true} />}
+      {error && <Toast severity='error' message={error} isOpen={true} />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
 
 const Alert = React.forwardRef(function Alert(
   props: AlertProps,
@@ -10,11 +10,12 @@ const Alert = React.forwardRef(function Alert(
 });
 
 type TToast = {
+  severity: AlertColor | undefined;
   message: string;
   isOpen: boolean;
 };
 
-const Toast = ({ message, isOpen = false }: TToast) => {
+const Toast = ({ severity, message, isOpen = false }: TToast) => {
   const [open, setOpen] = useState(isOpen);
 
   const handleClose = () => {
@@ -31,7 +32,7 @@ const Toast = ({ message, isOpen = false }: TToast) => {
       onClose={handleClose}
       message='I love snacks'
     >
-      <Alert onClose={handleClose} severity='error'>
+      <Alert onClose={handleClose} severity={severity}>
         {message}. Try again later.
       </Alert>
     </Snackbar>
