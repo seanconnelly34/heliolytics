@@ -17,9 +17,10 @@ const useGetMoviesBySearch = ({ searchTerm, page }: TSearchTerm) => {
     setMovieList([]);
   }, [searchTerm]);
 
+  console.log("searchTerm, searchTerm", searchTerm);
+  console.log("page", page, movieList);
   //fetch movie data, execute when searchTerm or page updates
   useEffect(() => {
-    if (searchTerm === "") setMovieList([]);
     if (searchTerm === "") return;
     if (totalPages < page) return;
 
@@ -32,7 +33,7 @@ const useGetMoviesBySearch = ({ searchTerm, page }: TSearchTerm) => {
 
         const movies = response.data.results;
         const numberOfPagesAvailable = response.data.total_pages;
-
+        if (movies.length === 0) return;
         setMovieList((prevState) => [...prevState, ...movies]);
         setTotalPages(numberOfPagesAvailable);
         setLoading(false);
